@@ -36,3 +36,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+# docs
+
+## Routing :
+
+- `/` : `homepage` : this page contains the list of localDB and  Remote connections. All settings related to these can also be found here
+- `/:db_name` : `DBhomepage` this is the home page of the selected database. it contains a list of apps that can be used with this database
+- `/:db_name/app_name` : this the the app's home page. each app is defined as a separate folder 

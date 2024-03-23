@@ -1,2 +1,6 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="row justify-content-md-center mt-2 pt-2">
+  <div class="col-6">
+    <h3>The InfoDB homepage</h3>
+   
+  </div>
+</div>
