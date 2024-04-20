@@ -8,7 +8,8 @@
 		"preview": "vite preview",
 		"test": "playwright test",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"dev-host":"npm run dev -- --host --port 3333"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

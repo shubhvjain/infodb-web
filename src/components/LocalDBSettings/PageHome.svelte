@@ -2,7 +2,7 @@
 <script>
   import Header from "../header.svelte";
   // import UIEditor from "../UIEditor.svelte"
-  import List from "./list.svelte";
+  import List from "./ListDB.svelte";
   
 </script>
   <Header/>
