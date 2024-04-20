@@ -1,4 +1,7 @@
 <script>
   import "../app.css"
 </script>
-<slot />
+<div class="container">
+  <slot />
+</div>
+
