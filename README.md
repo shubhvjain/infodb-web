@@ -44,4 +44,7 @@ You can preview the production build with `npm run preview`.
 
 - `/` : `homepage` : this page contains the list of localDB and  Remote connections. All settings related to these can also be found here
 - `/:db_name` : `DBhomepage` this is the home page of the selected database. it contains a list of apps that can be used with this database
-- `/:db_name/app_name` : this the the app's home page. each app is defined as a separate folder 
+
+- `/db_name/new` : to add a new record 
+- `/db_name/edit/record_id` : to edit a record 
+- 
