@@ -9,7 +9,7 @@
 		"test": "playwright test",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"dev-host":"npm run dev -- --host --port 3333"
+		"dev-host": "npm run dev -- --host --port 3333"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@json-editor/json-editor": "^2.14.1"
+		"@json-editor/json-editor": "^2.14.1",
+		"ajv": "^8.12.0"
 	}
 }
