@@ -148,7 +148,7 @@ export class db {
 				title: 'People',
 				type: 'object',
 				properties: {
-					name1: {
+					name: {
 						type: 'string'
 					},
 					emails: {
@@ -228,7 +228,7 @@ export class db {
 						}
 					}
 				},
-				required: ['id', 'name1']
+				required: ['name']
 			},
 			settings: {
 				primary_key: ['name']
@@ -276,7 +276,7 @@ export class db {
 			let query = { selector: { schema: 'setting', data: { name: setting_name } } };
 			// console.log(query)
 			let search = await this.db.find(query);
-			console.log(search)
+			//console.log(search)
 			if (search['docs'].length == 0) {
 				console.log('111')
 

@@ -1,30 +1,41 @@
 <!-- to display a list of available ldbs and add new one -->
 <script>
+	import { onMount } from 'svelte';
   import AddDB from './AddDB.svelte'
   import EditDB from './EditDB.svelte'
-  let dbs =  [
-    {
-      name:"sample1",
-      note: "This is a just a simple test server.",
-      created: "some date",
-      lastSynced:"some date",
-      remoteUrl:"some url"
-    },
-    {
-      name:"sample2",
-      note: "This is a just a simple test server.",
-      created: "some date",
-      lastSynced:"some date",
-      remoteUrl:"some url"
-    },
-    {
-      name:"sample3",
-      note: "This is a just a simple test server.",
-      created: "some date",
-      lastSynced:"some date",
-      remoteUrl:"some url"
-    }
-   ]
+  import EditorUI from '../Editor/EditorUI.svelte';
+	import DBEditor from '../Editor/DBEditor.svelte';
+  //import 
+  let dbs = []
+  onMount(async ()=>{
+    const dbMod = await import("$lib/client/localDBSettings")
+    let dbm = new dbMod.DatabaseManager()
+    //console.log()
+    dbs = dbm.getAllDatabases()
+  })
+  // dbs =  [
+  //   {
+  //     name:"sample1",
+  //     note: "This is a just a simple test server.",
+  //     created: "some date",
+  //     lastSynced:"some date",
+  //     remoteUrl:"some url"
+  //   },
+  //   {
+  //     name:"sample2",
+  //     note: "This is a just a simple test server.",
+  //     created: "some date",
+  //     lastSynced:"some date",
+  //     remoteUrl:"some url"
+  //   },
+  //   {
+  //     name:"sample3",
+  //     note: "This is a just a simple test server.",
+  //     created: "some date",
+  //     lastSynced:"some date",
+  //     remoteUrl:"some url"
+  //   }
+  //  ]
   let toggleState = (b)=>{
     //console.log(b)
     toggle[b] = !toggle[b]
@@ -46,12 +57,14 @@
     console.log("new added")
     toggle.add = false
   }
+  let sampleData = {"name":"svj"}
 </script>
-
 <div class="row p-1">
-    
+    <!-- <pre>{JSON.stringify(sampleData,null,2)}</pre> -->
+  <!-- <EditorUI mode="view" bind:data={sampleData} /> -->
+  <DBEditor id="new" db_name="sampledb4"/>
 
-    <h4>Local Databases on  device </h4>
+    <h4>LocalDBs on  device </h4>
     <div class="row row-cols-1 row-cols-md-4 g-3">
       
       

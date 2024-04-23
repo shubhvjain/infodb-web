@@ -1,29 +1,80 @@
+/* eslint-disable no-unused-vars */
 
-// localDBSetting or LDBS
-
-const local_key = "ldbs_settings"
-
-
-export const LDBS_get = ()=>{
-  let blank_obj = {
-    dbs :{},
-    created : ""
+export  class DatabaseManager {
+  constructor(storageKey="infodb_local_store") {
+    this.storageKey = storageKey;
+    this.databases = this.loadFromLocalStorage() || {};
   }
-  let l_obj = localStorage.getItem(local_key)
-  if(l_obj){
-    return l_obj 
-  }else{
-    // save new and return 
-    let new_obj = {... blank_obj}
-    new_obj["created"] = Math.floor(Date.now() / 1000)
-    localStorage.setItem(local_key,new_obj)
-    return new_obj
+
+  loadFromLocalStorage() {
+    const data = localStorage.getItem(this.storageKey);
+    return data ? JSON.parse(data) : null;
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.databases));
+  }
+
+  addDatabase(name, info) {
+    if (Object.prototype.hasOwnProperty.call(this.databases, name)) {
+      throw new Error(`Database '${name}' already exists.`);
+    } else {
+      const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+      this.databases[name] = { ...info, createdOn: currentDate };
+      this.saveToLocalStorage();
+    }
+  }
+
+  modifyDatabase(name, info) {
+    if (Object.prototype.hasOwnProperty.call(this.databases, name)) {
+      this.databases[name] = { ...this.databases[name], ...info };
+      this.saveToLocalStorage();
+    } else {
+      throw new Error(`Database '${name}' does not exist.`);
+    }
+  }
+
+  syncDatabase(name) {
+    // Assuming syncDatabase is an asynchronous function that returns a Promise
+    // return syncDatabaseFunction(name)
+    //   .then(() => {
+    //     const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    //     this.databases[name].syncedOn = currentDate;
+    //     this.saveToLocalStorage();
+    //   })
+    //   .catch(error => {
+    //     console.error(`Error syncing database '${name}': ${error}`);
+    //     throw error; // Propagate the error
+    //   });
+  }
+
+  getDatabase(name) {
+    if (Object.prototype.hasOwnProperty.call(this.databases, name)) {
+      return this.databases[name];
+    } else {
+      throw new Error(`Database '${name}' does not exist.`);
+    }
+  }
+  getAllDatabases() {
+    return Object.entries(this.databases).map(([name, info]) => ({ name, ...info }));
   }
 }
 
-// let LDBS_set = ()=>{return 1}
+// // Example usage:
+// const databaseManager = new DatabaseManager('databases');
 
-export const LDBS_check_DB_exists =  (db_name)=>{
-  let obj = LDBS_get()
-  return db_name in obj["dbs"]
-}
+// try {
+//   databaseManager.addDatabase('db1', { description: 'Database 1' });
+//   console.log(databaseManager.getDatabase('db1'));
+
+//   // Assuming syncDatabaseFunction is an asynchronous function that syncs the database externally
+//   databaseManager.syncDatabase('db1')
+//     .then(() => {
+//       console.log(databaseManager.getDatabase('db1'));
+//     })
+//     .catch(error => {
+//       console.error(error.message);
+//     });
+// } catch (error) {
+//   console.error(error.message);
+// }

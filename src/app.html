@@ -10,10 +10,19 @@
 		<script>
 			window["PouchDB"] = PouchDB
 		</script>
+		<style>
+			.je-object__container  .bg-light {
+				--bs-bg-opacity: 0;
+			}
+			.je-object__container  .card {
+				border: 0px;	
+				padding: 0px;
+			}
+		</style>
 		<title>InfoDB</title>
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" data-bs-theme="dark">
+	<body data-sveltekit-preload-data="hover" data-bs-theme="light">
 			<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
