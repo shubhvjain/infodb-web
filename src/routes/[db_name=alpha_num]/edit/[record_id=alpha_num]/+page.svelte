@@ -1,1 +1,4 @@
-this is the page to edit a record
+<script>
+  import EditRecord from "../../../../components/Page/EditRecord.svelte"
+</script>
+<EditRecord/>

@@ -62,7 +62,7 @@
 <div class="row p-1">
     <!-- <pre>{JSON.stringify(sampleData,null,2)}</pre> -->
   <!-- <EditorUI mode="view" bind:data={sampleData} /> -->
-  <DBEditor id="new" db_name="sampledb4"/>
+  <!-- <DBEditor id="new" db_name="sampledb4"/> -->
 
     <h4>LocalDBs on  device </h4>
     <div class="row row-cols-1 row-cols-md-4 g-3">
