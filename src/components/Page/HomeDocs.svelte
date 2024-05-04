@@ -13,6 +13,7 @@
       <li>Demo</li>
       <li>Getting started</li>
       <li>Schema library</li>
+      <li>Technical Details</li>
     </ul>
 
   </div>
