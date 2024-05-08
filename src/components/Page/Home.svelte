@@ -11,7 +11,8 @@ this page shows multiple things :
   import { onMount } from "svelte";
   import Header from "./Header.svelte";
   // import UIEditor from "../UIEditor.svelte"
-  import List from "../LocalDBSettings/ListDB.svelte";
+  import ListLDB from "../Actions/listLDB.svelte"
+  // import List from "../LocalDBSettings/ListDB.svelte";
   onMount(async()=>{
     // const dbConn = await import("$lib/client/localDB")
     // let a1 = new dbConn.db("sample3")
@@ -29,7 +30,7 @@ this page shows multiple things :
   
 </script>
   <Header/>
-  <List/>
+  <ListLDB/>
   <!-- <UIEditor/> -->
 
 

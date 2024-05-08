@@ -1,8 +1,8 @@
 <script>
-	import PageHome from "../components/Page/Home.svelte";
+	import Home from "../components/Page/Home.svelte"
 </script>
 <div>
-  <PageHome/>
+  <Home/>
 </div>
 
 

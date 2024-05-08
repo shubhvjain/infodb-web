@@ -1,10 +1,10 @@
 <!-- to display a list of available ldbs and add new one -->
 <script>
 	import { onMount } from 'svelte';
-  import AddDB from './AddDB.svelte'
-  import EditDB from './EditDB.svelte'
-  import EditorUI from '../Editor/EditorUI.svelte';
-	import DBEditor from '../Editor/DBEditor.svelte';
+  // import AddLDB from './addLDB.svelte'
+  // import EditDB from './EditDB.svelte'
+  // import EditorUI from '../Editor/EditorUI.svelte';
+	// import DBEditor from '../Editor/DBEditor.svelte';
   //import 
   let dbs = []
   onMount(async ()=>{
@@ -13,6 +13,7 @@
     //console.log()
     dbs = dbm.getAllDatabases()
   })
+
   // dbs =  [
   //   {
   //     name:"sample1",
@@ -119,7 +120,7 @@
               <div class="p-2">  <button class="btn btn-link" on:click={()=>{toggleState('edit')}} >Close</button>  </div>
             </div>
           </div>
-          <EditDB dbname = {selectedEditId} on:saveSuccessfully= {handleSaved}/>
+          <!-- <EditDB dbname = {selectedEditId} on:saveSuccessfully= {handleSaved}/> -->
         
           
         </div>
@@ -143,7 +144,7 @@
               <div class="p-2"><button class="btn btn-link" on:click={()=>toggleState('add')}>Close </button></div>
             </div>
           </div>
-          <AddDB/>
+          <!-- <AddLDB/> -->
         
           
         </div>
