@@ -1,17 +1,18 @@
 <!-- to display a list of available ldbs and add new one -->
 <script>
 	import { onMount } from 'svelte';
-  // import AddLDB from './addLDB.svelte'
   // import EditDB from './EditDB.svelte'
   // import EditorUI from '../Editor/EditorUI.svelte';
 	// import DBEditor from '../Editor/DBEditor.svelte';
   //import 
+  import AddLdb from './addLDB.svelte';
   let dbs = []
-  onMount(async ()=>{
+  onMount(async ()=>{ 
     const dbMod = await import("$lib/client/localDBSettings")
     let dbm = new dbMod.DatabaseManager()
     //console.log()
     dbs = dbm.getAllDatabases()
+    // console.log(dbs)
   })
 
   // dbs =  [
@@ -76,7 +77,7 @@
         <div class="card h-100">
          
           <div class="card-body">
-            <h5 class="card-title">{db.name}  <button type="button" class="btn btn-link" disabled={toggle.edit} on:click={()=>loadToEdit(db.name)} >Edit</button> <button type="button" disabled={toggle.edit}  class="btn btn-link">View</button> </h5>
+            <h5 class="card-title">{db.name} <a href="/{db.name}">View</a>  </h5>
             <p class="card-text">{db.note}</p>
           </div>
           <div class="card-footer">
@@ -107,30 +108,6 @@
   </div>
 
 
-{#if toggle.edit }
-  <div class="row row-cols-1 row-cols-md-12 g-3 mt-2 p-2">
-    <div class="col">
-      <div class="card">
-        
-        <div class="card-body">
-          <div class="card-title border-bottom">
-            <div class="d-flex">
-              <div class="p-2 flex-grow-1"> <h5 class="">Edit  </h5></div>
-              <!-- <div class="p-2">Save</div> -->
-              <div class="p-2">  <button class="btn btn-link" on:click={()=>{toggleState('edit')}} >Close</button>  </div>
-            </div>
-          </div>
-          <!-- <EditDB dbname = {selectedEditId} on:saveSuccessfully= {handleSaved}/> -->
-        
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-{/if}
-
-
 {#if toggle.add }
   <div class="row row-cols-1 row-cols-md-12 g-3 mt-2 p-2">
     <div class="col">
@@ -139,12 +116,12 @@
         <div class="card-body">
           <div class="card-title border-bottom">
             <div class="d-flex">
-              <div class="p-2 flex-grow-1"> <h5 class="">New InfoDB </h5></div>
+              <div class="p-2 flex-grow-1"></div>
               <!-- <div class="p-2">Save</div> -->
               <div class="p-2"><button class="btn btn-link" on:click={()=>toggleState('add')}>Close </button></div>
             </div>
           </div>
-          <!-- <AddLDB/> -->
+          <AddLdb/>
         
           
         </div>

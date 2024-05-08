@@ -6,21 +6,32 @@
 		title: 'Some title ',
 		properties: {
 			name: { type: 'string' },
-			class: { type: 'string', default: 'bla' },
 			email: { type: 'string', format: 'email' }
 		},
 		required: ['name', 'class', 'email']
 	};
-	export let data = { name: 'Shubh' };
+	export let data = { };
 	export let options = {};
 
 	let theEditor;
 	let editorId;
 	let editorError;
+	let displayError = (msg)=>{
+		editorError= msg
+	}
 
 	let getEditorName = () => {
 		return 'editor-' + (Math.floor(Math.random() * 9000) + 1000);
 	};
+
+	let valErrMag = (error)=>{
+		let val = []
+		error.map(er=>{
+			let pp = er.path.split(".")
+			val.push(`- ${pp[1]} : ${er.message}`)
+		})
+		return val.join("\n")
+	}
 
 	let displayEditor = async () => {
 		const { JSONEditor } = await import('@json-editor/json-editor');
@@ -52,7 +63,9 @@
 				const errors = theEditor.validate();
 				if (errors.length) {
 					console.log(errors);
+					displayError(`Validation Errors \n${valErrMag(errors)}`)
 				} else {
+					displayError("")
 					data = theEditor.getValue();
 					console.log(data);
 				}
@@ -118,7 +131,7 @@
 	<div class="col">
 		{#if editorError}
 			<div class="alert alert-warning">
-				{editorError}
+				{@html editorError}
 			</div>
 		{/if}
 		<div class="editor-json" id={editorId}></div>
