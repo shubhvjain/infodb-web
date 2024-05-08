@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 export  class DatabaseManager {
-  constructor(storageKey="infodb_local_store") {
+  constructor(storageKey="beanbagdb_local_store") {
     this.storageKey = storageKey;
     this.databases = this.loadFromLocalStorage() || {};
   }
@@ -15,12 +15,21 @@ export  class DatabaseManager {
     localStorage.setItem(this.storageKey, JSON.stringify(this.databases));
   }
 
+  sanitizeName(name) {
+    // Replace all symbols and spaces with dashes
+    return name.replace(/[^a-zA-Z0-9]/g, '-').replace(/\s+/g, '-');
+}
+
+
   addDatabase(name, info) {
     if (Object.prototype.hasOwnProperty.call(this.databases, name)) {
       throw new Error(`Database '${name}' already exists.`);
     } else {
+      let nam = this.sanitizeName(name)
+      info["name"] = this.sanitizeName(name)
+      console.log(info)
       const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
-      this.databases[name] = { ...info, createdOn: currentDate };
+      this.databases[nam] = { ...info, createdOn: currentDate };
       this.saveToLocalStorage();
     }
   }

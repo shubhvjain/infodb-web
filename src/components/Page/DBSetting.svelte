@@ -3,7 +3,8 @@
 
 <script>
   import Header from "./Header.svelte";
+  import EditLDBSettings from "../Actions/editLDBSettings.svelte"
+  export let db_name 
 </script>
-<Header page="db-home" db_name="sample1"/>
-
-this is to view / change settings of the database : all in a single place
+<Header page="db-home" db_name="{db_name}"/>
+<EditLDBSettings db_name={db_name}/>

@@ -2,7 +2,10 @@
 
 <script>
   import Header from "./Header.svelte";
-</script>
-<Header page="db-home" db_name="sample1"/>
+  import EditRecord from "../Actions/editRecord.svelte"
+  export let db_name 
+  export let record_id 
 
-this is to edit a selected record
+</script>
+<Header page="db-home" db_name="{db_name}"/>
+<EditRecord db_name={db_name} record_id={record_id} />

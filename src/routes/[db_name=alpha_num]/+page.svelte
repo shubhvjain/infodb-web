@@ -1,4 +1,5 @@
 <script>
+  export let data
   import HomeDB from "../../components/Page/HomeDB.svelte"
 </script>
-<HomeDB/>
+<HomeDB db_name={data["db_name"]} />
