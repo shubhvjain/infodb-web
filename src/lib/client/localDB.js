@@ -496,6 +496,7 @@ export class db {
 
 	get_blank_doc(schema_name) {
 		let doc = {
+			doc:"record",
 			data: {},
 			meta: {
 				createdOn: this.get_now_unix_timestamp(),
@@ -520,7 +521,7 @@ export class db {
 				meta: {
 					type: 'object',
 					additionalProperties: true
-				}
+				},
 			}
 		};
 		const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
@@ -532,11 +533,23 @@ export class db {
 		}
 		return;
 	}
-	get_metadata_schema() {
+	async get_metadata_schema() {
+		let tags = []
+		let tag_doc = await this.get_setting_doc('tags');
+		tag_doc["data"]["tags"].map(tg=>{tags.push(tg["name"])})
 		let records_meta_schema = {
 			type: 'object',
 			title: 'Doc metadata',
-			properties: {}
+			properties: {
+				"tags":{
+					type:"array",
+					maxItems: 100,
+					minItems: 0,
+					items:{
+						type:"string",	
+					}
+				}
+			}
 		};
 	}
 }

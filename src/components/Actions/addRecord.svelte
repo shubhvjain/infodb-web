@@ -1,6 +1,6 @@
 
 <script>
   export let db_name 
-
+  import DbEditor from "../Editor/DBEditor.svelte";
 </script>
-this is the new reocrd editro
+<DbEditor db_name={db_name}/>
